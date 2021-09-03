@@ -3,6 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialTesteState = {
   data: 1,
   authToken: null,
+  usersList: [],
 };
 
 const testeSlice = createSlice({
@@ -14,6 +15,9 @@ const testeSlice = createSlice({
     },
     getAuth(state, action) {
       state.authToken = action.payload.token;
+    },
+    getUsers(state, action) {
+      state.usersList = action.payload;
     },
   },
 });
