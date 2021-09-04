@@ -9,6 +9,8 @@ li {
   border: solid 2px darkorange;
   cursor: pointer;
   display: block;
+  font-size: 9px;
+
 }
 
 li:hover {
@@ -20,6 +22,7 @@ li span {
 }
 li img {
   pointer-events: none;
+  width: 50px;
 }
 
 /* --------------------------------------------------- */
@@ -27,4 +30,12 @@ li img {
 .user-details {
     border: solid 2px rebeccapurple;
     background-color: rosybrown;
+    font-size: 9px;
 }
+
+.user-activites {
+    border: solid 2px rebeccapurple;
+    background-color: lightcoral;
+    font-size: 9px;
+}
+

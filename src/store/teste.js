@@ -4,7 +4,8 @@ const initialTesteState = {
   data: 1,
   authToken: null,
   usersList: [],
-  selectedUserDetails: null
+  selectedUserDetails: null,
+  userActivitiesList: [],
 };
 
 const testeSlice = createSlice({
@@ -22,7 +23,10 @@ const testeSlice = createSlice({
     },
     getUserDetail(state, action) {
       state.selectedUserDetails = action.payload;
-    }
+    },
+    getUserActivities(state, action) {
+      state.userActivitiesList = action.payload;
+    },
   },
 });
 

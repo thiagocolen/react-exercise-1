@@ -4,6 +4,7 @@ import { testeActions } from "../store/teste";
 import { AuthApi } from "../api/authApi";
 import { UsersApi } from "../api/usersApi";
 import { UserIdApi } from "../api/userIdApi";
+import { UserActivities } from "../api/userActivities";
 
 let usersLoaded = false;
 
@@ -12,7 +13,12 @@ const TesteComponent = () => {
 
   const token = useSelector((state) => state.teste.authToken);
   const usersList = useSelector((state) => state.teste.usersList);
-  const selectedUserDetails = useSelector((state) => state.teste.selectedUserDetails);
+  const selectedUserDetails = useSelector(
+    (state) => state.teste.selectedUserDetails
+  );
+  const userActivitiesList = useSelector(
+    (state) => state.teste.userActivitiesList
+  );
 
   useEffect(() => {
     dispatch(AuthApi());
@@ -34,8 +40,9 @@ const TesteComponent = () => {
   };
 
   const userDetailHandler = (event) => {
-    const userID = event.target.attributes.value.value;
-    dispatch(UserIdApi(token, userID));
+    const userId = event.target.attributes.value.value;
+    dispatch(UserIdApi(token, userId));
+    dispatch(UserActivities(token, userId));
   };
 
   return (
@@ -43,6 +50,18 @@ const TesteComponent = () => {
       <h1>teste componente</h1>
       <h2>{testeData}</h2>
       <button onClick={addHandler}>add</button>
+      <hr />
+      <h3>userActivitiesList</h3>
+      <ul>
+        {userActivitiesList &&
+          userActivitiesList.map((item) => (
+            <li key={item.id}>
+              <span>date:{item.date}</span>
+              <br />
+              <span>description:{item.description}</span>
+            </li>
+          ))}
+      </ul>
       <hr />
       <h3>selectedUserDetails</h3>
       {selectedUserDetails && (
