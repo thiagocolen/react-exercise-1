@@ -1,6 +1,6 @@
 import { testeActions } from "../store/teste";
 
-export const UserActivities = (authToken, userId) => {
+export const UserActivitiesApi = (authToken, userId) => {
   return async (dispatch) => {
     const userActivities = async () => {
       const response = await fetch(

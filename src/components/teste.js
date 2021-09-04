@@ -4,8 +4,9 @@ import { testeActions } from "../store/teste";
 import { AuthApi } from "../api/authApi";
 import { UsersApi } from "../api/usersApi";
 import { UserIdApi } from "../api/userIdApi";
-import { UserActivities } from "../api/userActivitiesApi";
+import { UserActivitiesApi } from "../api/userActivitiesApi";
 import { ProgramName } from "../api/programNameApi";
+import { ProgramLevels } from "../api/programsLevelsApi";
 
 let usersLoaded = false;
 
@@ -25,6 +26,10 @@ const TesteComponent = () => {
     (state) => state.teste.selectedUserProgramName
   );
 
+  const selectedProgramLevelsList = useSelector(
+    (state) => state.teste.selectedProgramLevelsList
+  );
+
   useEffect(() => {
     dispatch(AuthApi());
   }, [dispatch]);
@@ -39,6 +44,7 @@ const TesteComponent = () => {
   useEffect(() => {
     if (selectedUserDetails) {
       dispatch(ProgramName(token, selectedUserDetails.programId));
+      dispatch(ProgramLevels(token, selectedUserDetails.programId));
     }
   }, [token, selectedUserDetails, dispatch]);
 
@@ -52,8 +58,9 @@ const TesteComponent = () => {
 
   const userDetailHandler = (event) => {
     const userId = event.target.attributes.value.value;
+    dispatch(testeActions.cleanUserDetailData())
     dispatch(UserIdApi(token, userId));
-    dispatch(UserActivities(token, userId));
+    dispatch(UserActivitiesApi(token, userId));
   };
 
   return (
@@ -62,10 +69,28 @@ const TesteComponent = () => {
       <h2>{testeData}</h2>
       <button onClick={addHandler}>add</button>
       <hr />
+
+      <h4>selectedProgramLevelsList</h4>
+      <ul>
+        {selectedProgramLevelsList &&
+          selectedProgramLevelsList.map((item) => (
+            <li key={item.id}>
+              <span>{item.order}</span>
+              <br />
+              <span>{item.name}</span>
+              <br />
+              <span>{item.programId}</span>
+              <br />
+              <span>{item.description}</span>
+            </li>
+          ))}
+      </ul>
+
+      <hr />
       <h4>selectedUserProgramName</h4>
       <span>{selectedUserProgramName}</span>
       <hr />
-      <h3>userActivitiesList</h3>
+      <h4>userActivitiesList</h4>
       <ul>
         {userActivitiesList &&
           userActivitiesList.map((item) => (
@@ -77,7 +102,7 @@ const TesteComponent = () => {
           ))}
       </ul>
       <hr />
-      <h3>selectedUserDetails</h3>
+      <h4>selectedUserDetails</h4>
       {selectedUserDetails && (
         <div className="user-details">
           <span>{selectedUserDetails.id}</span>
@@ -106,7 +131,7 @@ const TesteComponent = () => {
       )}
 
       <hr />
-      <h3>usersList</h3>
+      <h4>usersList</h4>
       <ul>
         {usersList &&
           usersList.map((item) => (
