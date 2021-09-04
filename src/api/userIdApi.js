@@ -1,7 +1,6 @@
 import { testeActions } from "../store/teste";
 
 export const UserIdApi = (authToken, userId) => {
-  debugger;
   return async (dispatch) => {
     const user = async () => {
       const response = await fetch(
