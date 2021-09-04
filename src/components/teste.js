@@ -42,8 +42,6 @@ const TesteComponent = () => {
         {usersList &&
           usersList.map((item) => (
             <li key={item.id}>
-              <span>{item.id}</span>
-              <br />
               <span>pos</span>
               <br />
               <span>{item.image}</span>
