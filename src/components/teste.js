@@ -1,10 +1,11 @@
-import { useEffect } from "react";
+import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { testeActions } from "../store/teste";
 import { AuthApi } from "../api/authApi";
 import { UsersApi } from "../api/usersApi";
 import { UserIdApi } from "../api/userIdApi";
-import { UserActivities } from "../api/userActivities";
+import { UserActivities } from "../api/userActivitiesApi";
+import { ProgramName } from "../api/programNameApi";
 
 let usersLoaded = false;
 
@@ -20,6 +21,10 @@ const TesteComponent = () => {
     (state) => state.teste.userActivitiesList
   );
 
+  const selectedUserProgramName = useSelector(
+    (state) => state.teste.selectedUserProgramName
+  );
+
   useEffect(() => {
     dispatch(AuthApi());
   }, [dispatch]);
@@ -30,6 +35,12 @@ const TesteComponent = () => {
       dispatch(UsersApi(token));
     }
   }, [token, dispatch]);
+
+  useEffect(() => {
+    if (selectedUserDetails) {
+      dispatch(ProgramName(token, selectedUserDetails.programId));
+    }
+  }, [token, selectedUserDetails, dispatch]);
 
   const testeData = useSelector((state) => {
     return state.teste.data;
@@ -51,6 +62,9 @@ const TesteComponent = () => {
       <h2>{testeData}</h2>
       <button onClick={addHandler}>add</button>
       <hr />
+      <h4>selectedUserProgramName</h4>
+      <span>{selectedUserProgramName}</span>
+      <hr />
       <h3>userActivitiesList</h3>
       <ul>
         {userActivitiesList &&
@@ -70,6 +84,12 @@ const TesteComponent = () => {
           <br />
           <span>{selectedUserDetails.name}</span>
           <br />
+          {selectedUserProgramName && (
+            <Fragment>
+              <span>{selectedUserProgramName}</span>
+              <br />
+            </Fragment>
+          )}
           <span>{selectedUserDetails.image}</span>
           <br />
           <span>{selectedUserDetails.programId}</span>

@@ -6,6 +6,7 @@ const initialTesteState = {
   usersList: [],
   selectedUserDetails: null,
   userActivitiesList: [],
+  selectedUserProgramName: null,
 };
 
 const testeSlice = createSlice({
@@ -23,10 +24,14 @@ const testeSlice = createSlice({
     },
     getUserDetail(state, action) {
       state.selectedUserDetails = action.payload;
+      state.selectedUserProgramName = null;
     },
     getUserActivities(state, action) {
       state.userActivitiesList = action.payload;
     },
+    getProgramName(state, action) {
+      state.selectedUserProgramName = action.payload.name;
+    }
   },
 });
 
