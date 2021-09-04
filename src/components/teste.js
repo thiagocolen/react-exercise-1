@@ -7,6 +7,7 @@ import { UserIdApi } from "../api/userIdApi";
 import { UserActivitiesApi } from "../api/userActivitiesApi";
 import { ProgramName } from "../api/programNameApi";
 import { ProgramLevels } from "../api/programsLevelsApi";
+import { BingApi } from "../api/bingApi";
 
 let usersLoaded = false;
 
@@ -30,8 +31,13 @@ const TesteComponent = () => {
     (state) => state.teste.selectedProgramLevelsList
   );
 
+  const backgroundImageUrl = useSelector(
+    (state) => state.teste.backgroundImageUrl
+  );
+
   useEffect(() => {
     dispatch(AuthApi());
+    dispatch(BingApi());
   }, [dispatch]);
 
   useEffect(() => {
@@ -58,18 +64,17 @@ const TesteComponent = () => {
 
   const userDetailHandler = (event) => {
     const userId = event.target.attributes.value.value;
-    dispatch(testeActions.cleanUserDetailData())
+    dispatch(testeActions.cleanUserDetailData());
     dispatch(UserIdApi(token, userId));
     dispatch(UserActivitiesApi(token, userId));
   };
 
   return (
-    <div>
+    <div style={{ backgroundImage: "url(" + backgroundImageUrl + ")" }}>
       <h1>teste componente</h1>
       <h2>{testeData}</h2>
       <button onClick={addHandler}>add</button>
       <hr />
-
       <h4>selectedProgramLevelsList</h4>
       <ul>
         {selectedProgramLevelsList &&
@@ -85,7 +90,6 @@ const TesteComponent = () => {
             </li>
           ))}
       </ul>
-
       <hr />
       <h4>selectedUserProgramName</h4>
       <span>{selectedUserProgramName}</span>

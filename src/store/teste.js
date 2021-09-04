@@ -8,6 +8,7 @@ const initialTesteState = {
   userActivitiesList: [],
   selectedUserProgramName: null,
   selectedProgramLevelsList: [],
+  backgroundImageUrl: null,
 };
 
 const testeSlice = createSlice({
@@ -40,6 +41,9 @@ const testeSlice = createSlice({
     },
     getProgramLevels(state, action) {
       state.selectedProgramLevelsList = action.payload;
+    },
+    getBackgroundImageUrl(state, action) {
+      state.backgroundImageUrl = action.payload;
     }
   },
 });
