@@ -22,11 +22,15 @@ const testeSlice = createSlice({
       state.authToken = action.payload.token;
     },
     getUsers(state, action) {
-      state.usersList = action.payload;
+      const userList = [...action.payload];
+      userList.sort((a, b) => {
+        return b.balance.points - a.balance.points;
+      });
+      state.usersList = userList;
     },
     cleanUserDetailData(state) {
       state.selectedUserDetails = null;
-      state.userActivitiesList = []
+      state.userActivitiesList = [];
       state.selectedUserProgramName = null;
       state.selectedProgramLevelsList = [];
     },
@@ -44,7 +48,7 @@ const testeSlice = createSlice({
     },
     getBackgroundImageUrl(state, action) {
       state.backgroundImageUrl = action.payload;
-    }
+    },
   },
 });
 
