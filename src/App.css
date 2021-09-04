@@ -1,4 +1,30 @@
 body {
-    background-color: brown;
-    margin: 100px;
+  background-color: brown;
+  margin: 50px;
+}
+
+/* --------------------------------------------------- */
+
+li {
+  border: solid 2px darkorange;
+  cursor: pointer;
+  display: block;
+}
+
+li:hover {
+  background-color: darkseagreen;
+}
+
+li span {
+  pointer-events: none;
+}
+li img {
+  pointer-events: none;
+}
+
+/* --------------------------------------------------- */
+
+.user-details {
+    border: solid 2px rebeccapurple;
+    background-color: rosybrown;
 }
