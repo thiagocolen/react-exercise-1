@@ -1,4 +1,6 @@
 import { Fragment } from "react";
+import { useSelector } from "react-redux";
+
 import Container from "@material-ui/core/Container";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
@@ -7,6 +9,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import BgImageComponent from "./components/bgImage";
 import HeaderComponent from "./components/header";
 import UserListComponent from "./components/userList";
+import UserDetailsComponent from "./components/userDetails";
 // import TesteComponent from "./components/teste";
 
 import "./App.css";
@@ -19,6 +22,15 @@ const useStyles = makeStyles({
 
 function App() {
   const classes = useStyles();
+
+  const selectedUserDetails = useSelector(
+    (state) => state.teste.selectedUserDetails
+  );
+
+  const userActivitiesList = useSelector(
+    (state) => state.teste.userActivitiesList
+  );
+
   return (
     <Fragment>
       <BgImageComponent />
@@ -33,16 +45,18 @@ function App() {
             </Paper>
           </Grid>
           <Grid item xs={4}>
-            <Paper>
-              loremloremlorem loremloremlorem loremloremlorem loremloremlorem
-              loremloremlorem loremloremlorem loremloremlorem loremloremlorem
-            </Paper>
+            {selectedUserDetails && (
+              <Paper>
+                <UserDetailsComponent />
+              </Paper>
+            )}
           </Grid>
           <Grid item xs={4}>
-            <Paper>
-              loremloremlorem loremloremlorem loremloremlorem loremloremlorem
-              loremloremlorem loremloremlorem loremloremlorem loremloremlorem
-            </Paper>
+            {userActivitiesList.length > 0 && (
+              <Paper>
+                userActivitiesList
+              </Paper>
+            )}
           </Grid>
         </Grid>
       </Container>
