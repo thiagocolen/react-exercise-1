@@ -8,6 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
 import Avatar from "@material-ui/core/Avatar";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { AuthApi } from "../api/authApi";
 import { UsersApi } from "../api/usersApi";
@@ -43,8 +44,8 @@ const UserListComponent = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => state.teste.authToken);
-  const usersList = useSelector((state) => state.teste.usersList);
+  const token = useSelector((state) => state.mainReducer.authToken);
+  const usersList = useSelector((state) => state.mainReducer.usersList);
 
   useEffect(() => {
     dispatch(AuthApi());
@@ -66,68 +67,77 @@ const UserListComponent = () => {
 
   return (
     <Fragment>
-      <Box my={1} mx={2} >
-        <Grid container>
-          <Grid item xs={2}>
-            <Typography color="secondary" variant="h3">
-              Pos.
-            </Typography>
-          </Grid>
-          <Grid item xs={8}>
-            <Typography color="secondary" variant="h3">
-              Member
-            </Typography>
-          </Grid>
-          <Grid item xs={2}>
-            <Typography color="secondary" variant="h3">
-              Points
-            </Typography>
-          </Grid>
-        </Grid>
-      </Box>
-
-      <List className={classes.overFlow} component="nav">
-        {usersList &&
-          usersList.map((item, index) => (
-            <ListItem
-              button
-              key={item.id}
-              value={item.id}
-              onClick={userDetailHandler}
-            >
-              <Grid container>
-                <Grid item xs={2}>
-                  <Box mt={0.6}>
-                    <Typography color="primary" variant="h3">
-                      {index + 1}
-                    </Typography>
-                  </Box>
-                </Grid>
-                <Grid item xs={2}>
-                  <Avatar
-                    className={classes.smallAvatar}
-                    alt="User face"
-                    src={item.image}
-                  />
-                </Grid>
-                <Grid item xs={6}>
-                  <Box mt={0.6}>
-                    <Typography color="primary" variant="h3">
-                      {item.name}
-                    </Typography>
-                  </Box>
-                </Grid>
-                <Grid item xs={2}>
-                  <Box mt={0.6}>
-                    <Typography color="primary" variant="h3">
-                      {item.balance.points}
-                    </Typography>
-                  </Box>
-                </Grid>
+      {usersList.length === 0 && (
+        <Box my={20} textAlign="center">
+          <CircularProgress  color="secondary" />
+        </Box>
+      )}
+      {usersList.length > 0 && (
+        <Fragment>
+          <Box my={1} mx={2}>
+            <Grid container>
+              <Grid item xs={2}>
+                <Typography color="secondary" variant="h3">
+                  Pos.
+                </Typography>
               </Grid>
-            </ListItem>
-          ))}
-      </List>
+              <Grid item xs={8}>
+                <Typography color="secondary" variant="h3">
+                  Member
+                </Typography>
+              </Grid>
+              <Grid item xs={2}>
+                <Typography color="secondary" variant="h3">
+                  Points
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
+
+          <List className={classes.overFlow} component="nav">
+            {usersList &&
+              usersList.map((item, index) => (
+                <ListItem
+                  button
+                  key={item.id}
+                  value={item.id}
+                  onClick={userDetailHandler}
+                >
+                  <Grid container>
+                    <Grid item xs={2}>
+                      <Box mt={0.6}>
+                        <Typography color="primary" variant="h3">
+                          {index + 1}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <Avatar
+                        className={classes.smallAvatar}
+                        alt="User face"
+                        src={item.image}
+                      />
+                    </Grid>
+                    <Grid item xs={6}>
+                      <Box mt={0.6}>
+                        <Typography color="primary" variant="h3">
+                          {item.name}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <Box mt={0.6}>
+                        <Typography color="primary" variant="h3">
+                          {item.balance.points}
+                        </Typography>
+                      </Box>
+                    </Grid>
+                  </Grid>
+                </ListItem>
+              ))}
+          </List>
+        </Fragment>
+      )}
     </Fragment>
   );
 };

@@ -5,6 +5,7 @@ import green from "@material-ui/core/colors/green";
 import Box from "@material-ui/core/Box";
 import Avatar from "@material-ui/core/Avatar";
 import Typography from "@material-ui/core/Typography";
+import Link from "@material-ui/core/Link";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
@@ -32,9 +33,15 @@ const HeaderComponent = () => {
         </Box>
 
         <Box textAlign="right" flexGrow={2} mr={2}>
-          <Typography color="secondary" variant="h6">
+          <Link
+            href="https://www.linkedin.com/in/thiagocolen/"
+            target="_blank"
+            color="secondary"
+            variant="h6"
+            underline="none"
+          >
             Thiago Colen
-          </Typography>
+          </Link>
         </Box>
         <Box flexGrow={0}>
           <Avatar alt="Thiago Colen" src={thiagoColenAvatarUrl} />

@@ -45,7 +45,7 @@ const theme = createTheme({
       fontWeight: "bolder",
     },
     h6: {
-      fontSize: 9,
+      fontSize: 11,
       fontWeight: "bold",
     },
     body1: {
@@ -60,13 +60,12 @@ const theme = createTheme({
 });
 
 function App() {
-
-  const selectedUserDetails = useSelector(
-    (state) => state.teste.selectedUserDetails
+  const showSelectedUserDetailsLoader = useSelector(
+    (state) => state.mainReducer.showSelectedUserDetailsLoader
   );
 
-  const userActivitiesList = useSelector(
-    (state) => state.teste.userActivitiesList
+  const showUserActivitiesListLoader = useSelector(
+    (state) => state.mainReducer.showUserActivitiesListLoader
   );
 
   return (
@@ -85,7 +84,7 @@ function App() {
               </Paper>
             </Grid>
             <Grid item xs={12} md={4}>
-              {selectedUserDetails && (
+              {showSelectedUserDetailsLoader && (
                 <Paper>
                   <Box p={1}>
                     <UserDetailsComponent />
@@ -94,7 +93,7 @@ function App() {
               )}
             </Grid>
             <Grid item xs={12} md={4}>
-              {userActivitiesList.length > 0 && (
+              {showUserActivitiesListLoader && (
                 <Paper>
                   <Box p={1}>
                     <UserActivitiesListComponent />

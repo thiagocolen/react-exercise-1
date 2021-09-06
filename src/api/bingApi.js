@@ -1,4 +1,5 @@
 import { mainActions } from "../store/mainSlice";
+import bgImg from "../assets/bg.jpg";
 
 export const BingApi = (authToken, programId) => {
   return async (dispatch) => {
@@ -19,6 +20,7 @@ export const BingApi = (authToken, programId) => {
       dispatch(mainActions.getBackgroundImageUrl(backgroundImageURL));
     } catch (error) {
       console.log(error);
+      dispatch(mainActions.getBackgroundImageUrl(bgImg));
     }
   };
 };

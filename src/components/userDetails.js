@@ -9,8 +9,9 @@ import Divider from "@material-ui/core/Divider";
 import Slider from "@material-ui/core/Slider";
 import Typography from "@material-ui/core/Typography";
 import AllInclusiveIcon from "@material-ui/icons/AllInclusive";
-import FlareIcon from '@material-ui/icons/Flare';
+import FlareIcon from "@material-ui/icons/Flare";
 import blue from "@material-ui/core/colors/blue";
+import CircularProgress from "@material-ui/core/CircularProgress";
 
 import { mainActions } from "../store/mainSlice";
 import { ProgramName } from "../api/programNameApi";
@@ -36,33 +37,33 @@ const useStyles = makeStyles((theme) => ({
   },
   sliderThumb: {
     color: blue[900],
-  }
+  },
 }));
 
 const UserDetailsComponent = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
 
-  const token = useSelector((state) => state.teste.authToken);
+  const token = useSelector((state) => state.mainReducer.authToken);
 
   const selectedUserDetails = useSelector(
-    (state) => state.teste.selectedUserDetails
+    (state) => state.mainReducer.selectedUserDetails
   );
 
   const selectedUserProgramName = useSelector(
-    (state) => state.teste.selectedUserProgramName
+    (state) => state.mainReducer.selectedUserProgramName
   );
 
   const selectedProgramLevelsList = useSelector(
-    (state) => state.teste.selectedProgramLevelsList
+    (state) => state.mainReducer.selectedProgramLevelsList
   );
 
   const programLevelMarks = useSelector(
-    (state) => state.teste.programLevelMarks
+    (state) => state.mainReducer.programLevelMarks
   );
 
   const selectedProgramLevel = useSelector(
-    (state) => state.teste.selectedProgramLevel
+    (state) => state.mainReducer.selectedProgramLevel
   );
 
   useEffect(() => {
@@ -97,6 +98,11 @@ const UserDetailsComponent = () => {
 
   return (
     <Fragment>
+      {!selectedUserDetails && (
+        <Box my={20} textAlign="center">
+          <CircularProgress color="secondary" />
+        </Box>
+      )}
       {selectedUserDetails && (
         <Box p={0.5} className={classes.box}>
           <Grid container>

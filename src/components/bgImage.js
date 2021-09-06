@@ -5,13 +5,13 @@ import { BingApi } from "../api/bingApi";
 const BgImageComponent = () => {
   const dispatch = useDispatch();
 
+  const backgroundImageUrl = useSelector(
+    (state) => state.mainReducer.backgroundImageUrl
+  );
+
   useEffect(() => {
     dispatch(BingApi());
   }, [dispatch]);
-
-  const backgroundImageUrl = useSelector(
-    (state) => state.teste.backgroundImageUrl
-  );
 
   const bgImageStyle = {
     backgroundImage: "url(" + backgroundImageUrl + ")",
