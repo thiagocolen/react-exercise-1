@@ -1,70 +1,39 @@
-# Getting Started with Create React App
+# Exercício com React #1
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Este é um exercício com [ReactJs](https://reactjs.org/).
 
-## Available Scripts
+## Instalação
 
-In the project directory, you can run:
+Use o gerenciador de pacotes [npm](https://www.npmjs.com/) para instalar esse exercício.
 
-### `npm start`
+```bash
+npm install
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Executar
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+```bash
+npm start
+```
+## Bibliotecas
 
-### `npm test`
+Bibliotecas usadas no exercício:
+- [ReactJS](https://reactjs.org/) - Biblioteca para desenvolvimento front-end
+- [React-Redux](https://react-redux.js.org/) - Biblioteca para gerenciamento de estado
+- [Redux Toolkit](https://redux-toolkit.js.org/) - Ferramentas para Redux
+- [Testing Library](https://testing-library.com/) - Ferramentas para testes unitários
+- [Material-UI](https://material-ui.com/) - Biblioteca de interfaces para React
+- [MomentJS](https://momentjs.com/) -  Biblioteca para manipulação de datas
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Observações
 
-### `npm run build`
+Existe um problema de `"CORS"` ocorrendo com a chamada para a API de imagens do BING. Essa API não permite chamadas do `"http://localhost:3000"`, o que impede o carregamento da imagem de fundo, quando é aplicação é executada localmente.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Para contornar esse problema foi desenvolvido uma lógica que, quando ocorrer o erro, uma imagem de dentro da aplicação é carregada no lugar a imagem dinâmica que viria da API do BING.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Outra maneira de contornar o problema é a instalação de uma extensão do browser Chrome ([Allow CORS: Access-Control-Allow-Origin]([htt](https://chrome.google.com/webstore/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf))) que permite que a chamada seja feita sem erro e a imagem dinâmica seja carregada.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Conteúdo relacionado a segurança de aplicações React: [10 React security best practices](https://snyk.io/blog/10-react-security-best-practices/)
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
