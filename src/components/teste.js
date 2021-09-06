@@ -1,6 +1,6 @@
 import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { testeActions } from "../store/teste";
+import { mainActions } from "../store/mainSlice";
 import { AuthApi } from "../api/authApi";
 import { UsersApi } from "../api/usersApi";
 import { UserIdApi } from "../api/userIdApi";
@@ -59,12 +59,12 @@ const TesteComponent = () => {
   });
 
   const addHandler = () => {
-    dispatch(testeActions.increment());
+    dispatch(mainActions.increment());
   };
 
   const userDetailHandler = (event) => {
     const userId = event.target.attributes.value.value;
-    dispatch(testeActions.cleanUserDetailData());
+    dispatch(mainActions.cleanUserDetailData());
     dispatch(UserIdApi(token, userId));
     dispatch(UserActivitiesApi(token, userId));
   };

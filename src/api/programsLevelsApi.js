@@ -1,4 +1,4 @@
-import { testeActions } from "../store/teste";
+import { mainActions } from "../store/mainSlice";
 
 export const ProgramLevels = (authToken, programId) => {
   return async (dispatch) => {
@@ -18,7 +18,7 @@ export const ProgramLevels = (authToken, programId) => {
 
     try {
         const programLevelsList = await programData();
-        dispatch(testeActions.getProgramLevels(programLevelsList));
+        dispatch(mainActions.getProgramLevels(programLevelsList));
       } catch (error) {
         console.log(error);
       }

@@ -1,4 +1,4 @@
-import { testeActions } from "../store/teste";
+import { mainActions } from "../store/mainSlice";
 
 export const UserIdApi = (authToken, userId) => {
   return async (dispatch) => {
@@ -18,7 +18,7 @@ export const UserIdApi = (authToken, userId) => {
 
     try {
       const userDetails = await user();
-      dispatch(testeActions.getUserDetail(userDetails));
+      dispatch(mainActions.getUserDetail(userDetails));
     } catch (error) {
       console.log(error);
     }

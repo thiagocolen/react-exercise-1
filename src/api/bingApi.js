@@ -1,4 +1,4 @@
-import { testeActions } from "../store/teste";
+import { mainActions } from "../store/mainSlice";
 
 export const BingApi = (authToken, programId) => {
   return async (dispatch) => {
@@ -16,7 +16,7 @@ export const BingApi = (authToken, programId) => {
     try {
       const backgroundImage = await backgroundImageData();
       const backgroundImageURL = `https://www.bing.com/${backgroundImage.images[0].url}`;
-      dispatch(testeActions.getBackgroundImageUrl(backgroundImageURL));
+      dispatch(mainActions.getBackgroundImageUrl(backgroundImageURL));
     } catch (error) {
       console.log(error);
     }

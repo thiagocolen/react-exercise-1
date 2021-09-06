@@ -1,4 +1,4 @@
-import { testeActions } from "../store/teste";
+import { mainActions } from "../store/mainSlice";
 
 export const ProgramName = (authToken, programId) => {
   return async (dispatch) => {
@@ -18,7 +18,7 @@ export const ProgramName = (authToken, programId) => {
 
     try {
       const programName = await programData();
-      dispatch(testeActions.getProgramName(programName));
+      dispatch(mainActions.getProgramName(programName));
     } catch (error) {
       console.log(error);
     }

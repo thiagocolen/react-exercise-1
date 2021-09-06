@@ -1,56 +1,45 @@
 import AppBar from "@material-ui/core/AppBar";
-import Container from "@material-ui/core/Container";
-import Grid from "@material-ui/core/Grid";
+import Toolbar from "@material-ui/core/Toolbar";
+import EcoIcon from "@material-ui/icons/Eco";
+import green from "@material-ui/core/colors/green";
+import Box from "@material-ui/core/Box";
 import Avatar from "@material-ui/core/Avatar";
+import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles({
-  root: {
-    backgroundColor: "white",
-    display: "flex",
-    flexDirection: "column",
-    height: '83px',
+const useStyles = makeStyles((theme) => ({
+  colorPrimary: {
+    backgroundColor: theme.palette.common.white,
   },
-  avatar: {
-    alignSelf: "center",
-    margin: "10px 50px",
-  },
-  title: {
-    color: "black",
-  },
-  name: {
-    color: "gray",
-    textAlign: "right",
-    textTransform: "uppercase",
-  },
-});
+}));
 
 const HeaderComponent = () => {
-  const classes = useStyles();
-
   const thiagoColenAvatarUrl =
     "https://media-exp1.licdn.com/dms/image/C4D03AQH8hRQxScoIcA/profile-displayphoto-shrink_200_200/0/1538777195418?e=1635984000&v=beta&t=UfvVtfqbnuwhcmNNAFRCWSdgESD5UHipv8Lng-LTUxk";
 
-  return (
-    <AppBar className={classes.root} position="fixed">
-      <Container maxWidth="md">
-        <Grid container spacing={3}>
-          <Grid item xs={8}>
-            <h3 className={classes.title}>Fielo React Test</h3>
-          </Grid>
-          <Grid item xs={2}>
-            <h5 className={classes.name}>Thiago Colen</h5>
-          </Grid>
+  const classes = useStyles();
 
-          <Grid item xs={2}>
-            <Avatar
-              className={classes.avatar}
-              alt="Thiago Colen"
-              src={thiagoColenAvatarUrl}
-            />
-          </Grid>
-        </Grid>
-      </Container>
+  return (
+    <AppBar position="fixed" classes={{ colorPrimary: classes.colorPrimary }}>
+      <Toolbar>
+        <Box mr={2}>
+          <EcoIcon style={{ color: green[900] }} fontSize="large" />
+        </Box>
+        <Box flexGrow={8}>
+          <Typography color="primary" variant="h5">
+            Fielo React Test
+          </Typography>
+        </Box>
+
+        <Box textAlign="right" flexGrow={2} mr={2}>
+          <Typography color="secondary" variant="h6">
+            Thiago Colen
+          </Typography>
+        </Box>
+        <Box flexGrow={0}>
+          <Avatar alt="Thiago Colen" src={thiagoColenAvatarUrl} />
+        </Box>
+      </Toolbar>
     </AppBar>
   );
 };

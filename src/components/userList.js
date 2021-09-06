@@ -2,58 +2,39 @@ import { Fragment, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import { makeStyles } from "@material-ui/core/styles";
+import Box from "@material-ui/core/Box";
+import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
 import Avatar from "@material-ui/core/Avatar";
 
 import { AuthApi } from "../api/authApi";
 import { UsersApi } from "../api/usersApi";
-import { testeActions } from "../store/teste";
+import { mainActions } from "../store/mainSlice";
 import { UserIdApi } from "../api/userIdApi";
 import { UserActivitiesApi } from "../api/userActivitiesApi";
 
 let usersLoaded = false;
-
-// TODO: Overriding styles with global class names???
 
 const useStyles = makeStyles((theme) => ({
   smallAvatar: {
     width: theme.spacing(3),
     height: theme.spacing(3),
   },
-  nameText: {
-    // fontSize: "11px",
-    color: "black",
-    fontWeight: "bold",
-  },
-  points: {
-    float: "right",
-    // fontSize: "11px",
-  },
-  myContainer: {},
-  titles: {
-    marginTop: "10px",
-    // fontSize: "11px",
-    color: "grey",
-    fontWeight: "bold",
-  },
   overFlow: {
-    margin: "10px",
     overflow: "auto",
-    height: "370px",
+    height: 383,
     "&::-webkit-scrollbar": {
       width: 6,
     },
     "&::-webkit-scrollbar-track": {
       boxShadow: `inset 0 0 6px rgba(0, 0, 0, 0.3)`,
-      borderRadius: "3px",
+      borderRadius: 3,
     },
     "&::-webkit-scrollbar-thumb": {
       backgroundColor: "grey",
-      borderRadius: "3px",
+      borderRadius: 3,
     },
   },
 }));
@@ -78,30 +59,34 @@ const UserListComponent = () => {
 
   const userDetailHandler = (event) => {
     const userId = event.currentTarget.attributes.value.value;
-    dispatch(testeActions.cleanUserDetailData());
+    dispatch(mainActions.cleanUserDetailData());
     dispatch(UserIdApi(token, userId));
     dispatch(UserActivitiesApi(token, userId));
   };
 
   return (
     <Fragment>
-      <Grid container className={classes.titles}>
-        <Grid item xs={2}>
-          Pos
+      <Box my={1} mx={2} >
+        <Grid container>
+          <Grid item xs={2}>
+            <Typography color="secondary" variant="h3">
+              Pos.
+            </Typography>
+          </Grid>
+          <Grid item xs={8}>
+            <Typography color="secondary" variant="h3">
+              Member
+            </Typography>
+          </Grid>
+          <Grid item xs={2}>
+            <Typography color="secondary" variant="h3">
+              Points
+            </Typography>
+          </Grid>
         </Grid>
-        <Grid item xs={8}>
-          Member
-        </Grid>
-        <Grid item xs={2}>
-          Points
-        </Grid>
-      </Grid>
+      </Box>
 
-      <List
-        className={classes.overFlow}
-        component="nav"
-        aria-label="main mailbox folders"
-      >
+      <List className={classes.overFlow} component="nav">
         {usersList &&
           usersList.map((item, index) => (
             <ListItem
@@ -110,31 +95,36 @@ const UserListComponent = () => {
               value={item.id}
               onClick={userDetailHandler}
             >
-              <ListItemIcon>
-                <ListItemText
-                  classes={{
-                    primary: classes.nameText,
-                  }}
-                  primary={index + 1}
-                />
-                <Avatar
-                  className={classes.smallAvatar}
-                  alt="User face"
-                  src={item.image}
-                />
-              </ListItemIcon>
-              <ListItemText
-                classes={{
-                  primary: classes.nameText,
-                }}
-                primary={item.name}
-              />
-              <ListItemText
-                classes={{
-                  primary: classes.points,
-                }}
-                primary={item.balance.points}
-              />
+              <Grid container>
+                <Grid item xs={2}>
+                  <Box mt={0.6}>
+                    <Typography color="primary" variant="h3">
+                      {index + 1}
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={2}>
+                  <Avatar
+                    className={classes.smallAvatar}
+                    alt="User face"
+                    src={item.image}
+                  />
+                </Grid>
+                <Grid item xs={6}>
+                  <Box mt={0.6}>
+                    <Typography color="primary" variant="h3">
+                      {item.name}
+                    </Typography>
+                  </Box>
+                </Grid>
+                <Grid item xs={2}>
+                  <Box mt={0.6}>
+                    <Typography color="primary" variant="h3">
+                      {item.balance.points}
+                    </Typography>
+                  </Box>
+                </Grid>
+              </Grid>
             </ListItem>
           ))}
       </List>

@@ -1,6 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialTesteState = {
+const formatCurrency = (number) => {
+  return new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(number)
+}
+
+const initialState = {
   data: 1,
   authToken: null,
   usersList: [],
@@ -13,9 +17,9 @@ const initialTesteState = {
   selectedProgramLevel: null,
 };
 
-const testeSlice = createSlice({
-  name: "teste",
-  initialState: initialTesteState,
+const mainSlice = createSlice({
+  name: "mainSlice",
+  initialState: initialState,
   reducers: {
     increment(state) {
       state.data++;
@@ -38,6 +42,13 @@ const testeSlice = createSlice({
     },
     getUserDetail(state, action) {
       state.selectedUserDetails = action.payload;
+      state.selectedUserDetails = {
+        ...action.payload,
+        balance: {
+          ...action.payload.balance,
+          formatedCurrency: formatCurrency(action.payload.balance.currency)
+        }
+      }
     },
     getUserActivities(state, action) {
       state.userActivitiesList = action.payload;
@@ -60,6 +71,6 @@ const testeSlice = createSlice({
   },
 });
 
-export const testeActions = testeSlice.actions;
+export const mainActions = mainSlice.actions;
 
-export default testeSlice.reducer;
+export default mainSlice.reducer;

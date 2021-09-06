@@ -1,4 +1,4 @@
-import { testeActions } from "../store/teste";
+import { mainActions } from "../store/mainSlice";
 
 export const AuthApi = () => {
   return async (dispatch) => {
@@ -19,7 +19,7 @@ export const AuthApi = () => {
 
     try {
       const authToken = await auth();
-      dispatch(testeActions.getAuth(authToken));
+      dispatch(mainActions.getAuth(authToken));
     } catch (error) {
       console.log(error);
     }
