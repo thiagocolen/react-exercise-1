@@ -99,12 +99,12 @@ const UserDetailsComponent = () => {
   return (
     <Fragment>
       {!selectedUserDetails && (
-        <Box my={20} textAlign="center">
+        <Box my={20} textAlign="center" data-testid="user-details-component-loading">
           <CircularProgress color="secondary" />
         </Box>
       )}
       {selectedUserDetails && (
-        <Box p={0.5} className={classes.box}>
+        <Box p={0.5} className={classes.box} data-testid="user-details-component-loaded">
           <Grid container>
             <Grid item xs={12}>
               <Box mt={2}>

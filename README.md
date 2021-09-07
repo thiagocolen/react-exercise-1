@@ -15,6 +15,13 @@ npm install
 ```bash
 npm start
 ```
+
+## Testes
+
+```bash
+npm test
+```
+
 ## Bibliotecas
 
 Bibliotecas usadas no exercício:

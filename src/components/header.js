@@ -21,7 +21,7 @@ const HeaderComponent = () => {
   const classes = useStyles();
 
   return (
-    <AppBar position="fixed" classes={{ colorPrimary: classes.colorPrimary }}>
+    <AppBar data-testid="header-component" position="fixed" classes={{ colorPrimary: classes.colorPrimary }}>
       <Toolbar>
         <Box mr={2}>
           <EcoIcon style={{ color: green[900] }} fontSize="large" />

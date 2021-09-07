@@ -68,13 +68,13 @@ const UserListComponent = () => {
   return (
     <Fragment>
       {usersList.length === 0 && (
-        <Box my={20} textAlign="center">
+        <Box my={20} textAlign="center" data-testid="user-list-component-loading">
           <CircularProgress  color="secondary" />
         </Box>
       )}
       {usersList.length > 0 && (
         <Fragment>
-          <Box my={1} mx={2}>
+          <Box my={1} mx={2} data-testid="user-list-component-loaded">
             <Grid container>
               <Grid item xs={2}>
                 <Typography color="secondary" variant="h3">

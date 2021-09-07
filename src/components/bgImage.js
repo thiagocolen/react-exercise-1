@@ -26,7 +26,7 @@ const BgImageComponent = () => {
     zIndex: "-1",
   };
 
-  return <div style={bgImageStyle}></div>;
+  return <div data-testid="bg-image-component" style={bgImageStyle}></div>;
 };
 
 export default BgImageComponent;
