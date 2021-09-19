@@ -1,6 +1,7 @@
 import { mainActions } from "../store/mainSlice";
 import bgImg from "../assets/bg.jpg";
 
+// this API sucks with CORS issue
 export const BingApi = (authToken, programId) => {
   return async (dispatch) => {
     const backgroundImageData = async () => {

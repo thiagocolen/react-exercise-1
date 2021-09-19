@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BingApi } from "../api/bingApi";
+import { UnsplashApi } from "../api/unsplashApi";
 
 const BgImageComponent = () => {
   const dispatch = useDispatch();
@@ -10,7 +10,7 @@ const BgImageComponent = () => {
   );
 
   useEffect(() => {
-    dispatch(BingApi());
+    dispatch(UnsplashApi());
   }, [dispatch]);
 
   const bgImageStyle = {

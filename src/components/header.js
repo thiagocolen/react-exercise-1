@@ -28,7 +28,7 @@ const HeaderComponent = () => {
         </Box>
         <Box flexGrow={8}>
           <Typography color="primary" variant="h5">
-            Fielo React Test
+            React Exercise
           </Typography>
         </Box>
 
